@@ -1,5 +1,7 @@
 using CopaGames.Application.External;
 using CopaGames.Application.External.Interfaces;
+using CopaGames.Application.Services;
+using CopaGames.Application.Services.Interfaces;
 using CopaGames.Infrastructure.Extensions.ServiceRegistration;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -26,6 +28,7 @@ builder.Services.AddApiVersioning(options =>
 
 builder.Services.RegisterHttpClients(builder.Configuration);
 builder.Services.AddTransient<IGamesApi, ExternalGamesApi>();
+builder.Services.AddTransient<IGameService, GameService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
