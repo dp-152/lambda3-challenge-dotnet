@@ -1,6 +1,7 @@
 using CopaGames.Application.External.Interfaces;
 using CopaGames.Application.Services.Interfaces;
 using CopaGames.Domain.DTO.Game;
+using CopaGames.Domain.DTO.GamesList;
 using CopaGames.Domain.DTO.Tournament;
 using CopaGames.Domain.Enums.Tournament;
 
@@ -14,10 +15,10 @@ public class GameService : IGameService
         _gamesApi = gamesApi ?? throw new ArgumentNullException(nameof(gamesApi));
     }
 
-    public async Task<IEnumerable<GameDTO>> GetAllGames()
+    public async Task<IEnumerable<GamesListResponseDTO>> GetAllGames()
     {
         var result = await _gamesApi.GetGameList();
-        return result.Select(game => new GameDTO
+        return result.Select(game => new GamesListResponseDTO
         {
             Id = game.Id,
             Title = game.Titulo,
