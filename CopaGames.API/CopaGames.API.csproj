@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CopaGames.Application\CopaGames.Application.csproj" />
     <ProjectReference Include="..\CopaGames.Infrastructure\CopaGames.Infrastructure.csproj" />
   </ItemGroup>
 
