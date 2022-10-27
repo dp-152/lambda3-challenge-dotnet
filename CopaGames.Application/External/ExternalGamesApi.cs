@@ -15,7 +15,7 @@ public class ExternalGamesApi : IGamesApi
     
     public async Task<IEnumerable<GamesApiResponseDTO>> GetGameList()
     {
-        HttpRequestMessage httpRequest = new(HttpMethod.Get, new Uri("/Competidores?copa=games"));
+        HttpRequestMessage httpRequest = new(HttpMethod.Get, new Uri("/api/Competidores?copa=games", UriKind.Relative));
         using var client = _clientFactory.CreateClient("CopaGamesApi");
         var response = await client.SendAsync(httpRequest);
         var content = await response.Content.ReadAsStringAsync();
