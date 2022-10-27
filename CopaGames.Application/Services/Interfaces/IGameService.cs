@@ -6,5 +6,5 @@ namespace CopaGames.Application.Services.Interfaces;
 public interface IGameService
 {
     Task<IEnumerable<GameDTO>> GetAllGames();
-    Task<IEnumerable<GameDTO>> RunTournament(GameTournamentRequestDTO request);
+    Task<GameTournamentResponseDTO> RunTournament(GameTournamentRequestDTO request);
 }
