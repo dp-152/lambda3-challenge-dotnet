@@ -1,10 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(opt =>
+{
+    opt.SerializerSettings.Formatting = Formatting.None;
+    opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+    opt.SerializerSettings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
+    opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+});
 
 builder.Services.AddApiVersioning(options =>
 {
