@@ -18,4 +18,10 @@
   <ItemGroup>
     <ProjectReference Include="..\CopaGames.Application\CopaGames.Application.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="Assets\**\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
