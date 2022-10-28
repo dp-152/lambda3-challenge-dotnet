@@ -19,14 +19,7 @@ public class GameService : IGameService
     public async Task<IEnumerable<GamesListResponseDTO>> GetAllGames()
     {
         var result = await _gamesApi.GetGameList();
-        return result.Select(game => new GamesListResponseDTO
-        {
-            Id = game.Id,
-            Title = game.Titulo,
-            Score = game.Nota,
-            Year = game.Ano,
-            ImageUrl = game.UrlImagem,
-        });
+        return result.Select(game => (GamesListResponseDTO) game);
     }
 
     public async Task<GameTournamentResponseDTO> RunTournament(GameTournamentRequestDTO request)
@@ -34,14 +27,7 @@ public class GameService : IGameService
         var allGames = await _gamesApi.GetGameList();
         var contestants = allGames
             .Where(game => request.GameIds.Contains(game.Id))
-            .Select(game => new GameDTO
-            {
-                Id = game.Id,
-                Title = game.Titulo,
-                Score = game.Nota,
-                Year = game.Ano,
-                ImageUrl = game.UrlImagem,
-            }).ToList();
+            .Select(game => (GameDTO) game).ToList();
 
         if (contestants.Count() != request.GameIds.Count())
         {
