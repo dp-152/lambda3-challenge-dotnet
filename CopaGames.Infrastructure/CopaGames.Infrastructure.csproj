@@ -17,10 +17,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CopaGames.Application\CopaGames.Application.csproj" />
     <ProjectReference Include="..\CopaGames.Domain\CopaGames.Domain.csproj" />
   </ItemGroup>
 

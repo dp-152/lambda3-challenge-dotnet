@@ -4,6 +4,7 @@ using CopaGames.Domain.DTO.Game;
 using CopaGames.Domain.DTO.GamesList;
 using CopaGames.Domain.DTO.Tournament;
 using CopaGames.Domain.Enums.Tournament;
+using CopaGames.Infrastructure.Extensions.Exceptions;
 
 namespace CopaGames.Application.Services;
 
@@ -44,7 +45,7 @@ public class GameService : IGameService
 
         if (contestants.Count() != request.GameIds.Count())
         {
-            throw new Exception(
+            throw new BadRequestException(
                 $"Not enough contestants to start a tournament: only {contestants.Count()} games found out of {request.GameIds.Count()} IDs provided");
         }
 
