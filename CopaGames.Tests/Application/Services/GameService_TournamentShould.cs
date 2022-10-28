@@ -7,6 +7,7 @@ using CopaGames.Application.External.Interfaces;
 using CopaGames.Application.Services;
 using CopaGames.Domain.DTO.External.GamesApi;
 using CopaGames.Domain.DTO.Tournament;
+using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -35,9 +36,9 @@ public class GameService_TournamentShould
     public async Task ReturnValid__WithValidInput()
     {
         var tournamentResult = await GetTournamentResultFromInputData("valid-tournament.json");
-        Assert.IsNotNull(tournamentResult);
-        Assert.IsNotNull(tournamentResult.Winner);
-        Assert.IsNotNull(tournamentResult.RunnerUp);
+        tournamentResult.Should().NotBeNull();
+        tournamentResult.Winner.Should().NotBeNull();
+        tournamentResult.RunnerUp.Should().NotBeNull();
     }
 
     [Test]
@@ -64,12 +65,12 @@ public class GameService_TournamentShould
 
     private void AssertDefaultTournamentWinners(GameTournamentResponseDTO tournamentResult)
     {
-        Assert.IsNotNull(tournamentResult);
-        Assert.IsNotNull(tournamentResult.Winner);
-        Assert.IsNotNull(tournamentResult.RunnerUp);
-        Assert.AreNotEqual(tournamentResult.Winner, tournamentResult.RunnerUp);
-        Assert.AreEqual(tournamentResult.Winner.Id, "/game/8");
-        Assert.AreEqual(tournamentResult.RunnerUp.Id, "/game/6");
+        tournamentResult.Should().NotBeNull();
+        tournamentResult.Winner.Should().NotBeNull();
+        tournamentResult.RunnerUp.Should().NotBeNull();
+        tournamentResult.Winner.Should().NotBeEquivalentTo(tournamentResult.RunnerUp);
+        tournamentResult.Winner.Id.Should().BeEquivalentTo("/game/8");
+        tournamentResult.RunnerUp.Id.Should().BeEquivalentTo("/game/6");
     } 
 
     private async Task<GameTournamentResponseDTO> GetTournamentResultFromInputData(string dataFileName)
