@@ -15,4 +15,7 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CopaGames.Application\CopaGames.Application.csproj" />
+  </ItemGroup>
 </Project>
