@@ -2,6 +2,7 @@ using CopaGames.Domain.Enums.CommandResult;
 using CopaGames.Infrastructure.Extensions.HttpMessages;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 
 namespace CopaGames.Infrastructure.Extensions.ControllerExtensions;
@@ -29,7 +30,7 @@ public class BaseController : Controller
         };
 
         response.RequestId = HttpContext.TraceIdentifier;
-        
+
         _logger.LogInformation("response: {@response}", response);
 
         switch (response.ResultType)
@@ -44,5 +45,25 @@ public class BaseController : Controller
             default:
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
         }
+    }
+
+    public override void OnActionExecuting(ActionExecutingContext context)
+    {
+        if (!ModelState.IsValid)
+        {
+            var response = new BaseResponse<string>
+            {
+                Message = "error",
+                ErrorDetails = "Falied model validation",
+                ErrorList = context.ModelState
+                    .Where(modelState => modelState.Value is not null && modelState.Value.Errors.Any())
+                    .Select(modelError =>
+                        $"{modelError.Key}: {modelError.Value!.Errors.Aggregate("", (prev, errorDetail) => prev + errorDetail.ErrorMessage + " ")}"),
+                ResultType = EResultType.BadRequest,
+            };
+            context.Result = Result(response);
+        }
+        _logger.LogError("request: {@request}", context.ActionArguments);
+        base.OnActionExecuting(context);
     }
 }
