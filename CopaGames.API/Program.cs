@@ -2,7 +2,10 @@ using CopaGames.Application.External;
 using CopaGames.Application.External.Interfaces;
 using CopaGames.Application.Services;
 using CopaGames.Application.Services.Interfaces;
+using CopaGames.Application.Services.Validators;
 using CopaGames.Infrastructure.Extensions.ServiceRegistration;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -27,6 +30,10 @@ builder.Services.AddApiVersioning(options =>
 });
 
 builder.Services.RegisterHttpClients(builder.Configuration);
+
+builder.Services.AddValidatorsFromAssemblyContaining<TournamentRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
 builder.Services.AddTransient<IGamesApi, ExternalGamesApi>();
 builder.Services.AddTransient<IGameService, GameService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
