@@ -8,6 +8,7 @@ using CopaGames.Application.External.Interfaces;
 using CopaGames.Application.Services;
 using CopaGames.Domain.DTO.External.GamesApi;
 using CopaGames.Domain.DTO.GamesList;
+using CopaGames.Infrastructure.Extensions.Utility;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
@@ -36,12 +37,8 @@ public class GameService_GetAllGamesShould
     [Test]
     public async Task ReturnValidList()
     {
-        using var reader = new StreamReader(Path.Join(_assetsPath, "game-list.json"));
-        var jsonString = await reader.ReadToEndAsync();
-        var gameList = JsonConvert.DeserializeObject<List<GamesApiResponseDTO>>(jsonString);
-        if (gameList is null)
-            throw new ArgumentNullException(nameof(gameList));
-        
+        var (_, gameList) = await FileRead.ReadJsonFromFile<List<GamesApiResponseDTO>>(Path.Join(_assetsPath, "game-list.json"));
+
         _mockGamesApi.Setup(gamesApi => gamesApi.GetGameList()).ReturnsAsync(gameList);
 
         var comparisonSubject = gameList.Select(game => (GamesListResponseDTO) game).ToList();
