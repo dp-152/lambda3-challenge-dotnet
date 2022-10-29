@@ -9,7 +9,7 @@ namespace CopaGames.Infrastructure.Extensions.ControllerExtensions;
 
 [ApiController]
 [ApiVersion("1")]
-[Route("api/{version:apiVersion}/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [Produces("application/json")]
 public class BaseController : Controller
 {

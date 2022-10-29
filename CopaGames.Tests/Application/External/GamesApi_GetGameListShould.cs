@@ -14,7 +14,6 @@ using CopaGames.Infrastructure.Extensions.Utility;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace CopaGames.Tests.Application.External;
