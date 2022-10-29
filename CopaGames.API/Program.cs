@@ -7,14 +7,17 @@ using CopaGames.Infrastructure.Extensions.ServiceRegistration;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers().AddNewtonsoftJson(opt =>
+builder.Services.AddControllers(opt =>
+{
+    opt.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+}).AddNewtonsoftJson(opt =>
 {
     opt.SerializerSettings.Formatting = Formatting.None;
     opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
