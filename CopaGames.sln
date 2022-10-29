@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaGames.Tests", "CopaGame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopaGames.Domain", "CopaGames.Domain\CopaGames.Domain.csproj", "{5D1D92AF-C8B7-4FF2-8280-D1AC6E0F63FF}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E8065A19-1F78-434D-911A-9AB865E6562D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,12 @@ Global
 		{5D1D92AF-C8B7-4FF2-8280-D1AC6E0F63FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D1D92AF-C8B7-4FF2-8280-D1AC6E0F63FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D1D92AF-C8B7-4FF2-8280-D1AC6E0F63FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8065A19-1F78-434D-911A-9AB865E6562D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8065A19-1F78-434D-911A-9AB865E6562D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8065A19-1F78-434D-911A-9AB865E6562D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8065A19-1F78-434D-911A-9AB865E6562D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B49BE703-5C41-4F7C-BF92-7E80053802B1}
 	EndGlobalSection
 EndGlobal
