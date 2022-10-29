@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -10,7 +9,6 @@ using CopaGames.Domain.DTO.Tournament;
 using CopaGames.Infrastructure.Extensions.Utility;
 using FluentAssertions;
 using Moq;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace CopaGames.Tests.Application.Services;
