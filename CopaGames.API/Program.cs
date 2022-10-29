@@ -29,6 +29,12 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new ApiVersion(1, 0);
 });
 
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+});
+
 builder.Services.RegisterHttpClients(builder.Configuration);
 
 builder.Services.AddValidatorsFromAssemblyContaining<TournamentRequestValidator>();
