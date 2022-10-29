@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  copagames.api:
+    image: ${DOCKER_REGISTRY-}copagamesapi
+    build:
+      context: .
+      dockerfile: Dockerfile
