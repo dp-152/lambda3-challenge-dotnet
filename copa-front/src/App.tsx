@@ -1,3 +1,4 @@
+import "./assets/css/bootstrap.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import GameSelect from "./pages/GameSelect";
 import Home from "./pages/Home";
