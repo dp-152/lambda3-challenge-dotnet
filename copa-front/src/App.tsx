@@ -1,8 +1,7 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
-import GameSelect from './pages/GameSelect';
-import Home from './pages/Home';
-import TournamentResult from './pages/TournamentResult';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import GameSelect from "./pages/GameSelect";
+import Home from "./pages/Home";
+import TournamentResult from "./pages/TournamentResult";
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/select-games" element={<GameSelect />} />
         <Route path="/tournament-result" element={<TournamentResult />} />
-        <Route path='*' element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
