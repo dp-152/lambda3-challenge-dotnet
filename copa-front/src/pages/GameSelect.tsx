@@ -7,7 +7,6 @@ import IGameData from "../interfaces/IGameData";
 import GameCard from "../components/page/GameSelect/GameCard";
 import Row from "react-bootstrap/Row";
 import useGameSelect from "../hooks/useGameSelect";
-import { Navigate } from "react-router-dom";
 
 export default function GameSelect() {
   const [apiError, setApiError] = useState(false);
