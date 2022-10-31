@@ -1,0 +1,14 @@
+.title-card__card {
+  text-align: center;
+  padding: 20px;
+  margin: 30px;
+}
+
+.title-card__card hr {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.title-card__card__text {
+  width: 60%;
+}
