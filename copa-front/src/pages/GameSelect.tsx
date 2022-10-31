@@ -44,7 +44,7 @@ export default function GameSelect() {
           selected={selected}
         />
       </Container>
-      <Container>
+      <Container as="main">
         <Row>
           {gameList
             ? gameList.map(game => (
