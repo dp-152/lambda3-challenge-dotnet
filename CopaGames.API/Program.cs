@@ -38,6 +38,20 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy
+            .WithOrigins(builder
+                .Configuration
+                .GetSection("CorsAllowedOrigins")
+                .Get<string[]?>() ?? new[] { "*" })
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.RegisterHttpClients(builder.Configuration);
 
 builder.Services.AddValidatorsFromAssemblyContaining<TournamentRequestValidator>();
@@ -59,7 +73,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseExceptionHandler("/error");
 
-app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthorization();
 
