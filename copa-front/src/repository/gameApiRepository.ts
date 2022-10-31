@@ -8,9 +8,9 @@ const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-export async function getAllGames(): Promise<IGameData> {
+export async function getAllGames(): Promise<IGameData[]> {
   const { data: responseData } = await axiosInstance
-    .get<IAPIResponse<IGameData>>("/game");
+    .get<IAPIResponse<IGameData[]>>("/game");
 
   return responseData.data;
 }
