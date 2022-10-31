@@ -5,13 +5,16 @@ import "../../../assets/css/components/page/GameSelect/GameCard.css";
 
 interface IProps {
   game: IGameData;
+  isSelected: boolean;
+  selectFunc: (id: string) => void;
 }
 
-export default function GameCard({ game }: IProps) {
+export default function GameCard({ game, isSelected, selectFunc }: IProps) {
   return (
     <Col xs={6} sm={6} md={4} lg={3} className="game-card__card-col">
       <Card
-        bg="light"
+        onClick={() => selectFunc(game.id)}
+        bg={isSelected ? "primary" : "light"}
         className="game-card__card"
       >
         <Card.Title>{game.title}</Card.Title>
