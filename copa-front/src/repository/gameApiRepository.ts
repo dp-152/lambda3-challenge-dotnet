@@ -15,15 +15,15 @@ export async function getAllGames(): Promise<IGameData[]> {
   return responseData.data;
 }
 
-export async function runTournament(contestants: ITournamentRequest) {
-  if (contestants.gameIds.length !== 8) {
+export async function runTournament(payload: ITournamentRequest) {
+  if (payload.gameIds.length !== 8) {
     throw new Error(
-      `Must send exactly 8 contestants, sent ${contestants.gameIds.length}`,
+      `Must send exactly 8 contestants, sent ${payload.gameIds.length}`,
     );
   }
 
   const { data: responseData } = await axiosInstance
-    .post<IAPIResponse<ITournamentResponse>>("/game");
+    .post<IAPIResponse<ITournamentResponse>>("/game", payload);
 
   return responseData;
 }
