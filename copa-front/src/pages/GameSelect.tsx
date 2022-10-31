@@ -52,6 +52,7 @@ export default function GameSelect() {
                 key={game.id}
                 game={game}
                 isSelected={!!selected.find(el => game.id === el)}
+                isDisabled={selected.length >= 8}
                 selectFunc={setSelected}
               />
             ))
