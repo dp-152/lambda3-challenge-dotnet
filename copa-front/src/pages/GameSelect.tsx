@@ -7,6 +7,7 @@ import IGameData from "../interfaces/IGameData";
 import GameCard from "../components/page/GameSelect/GameCard";
 import Row from "react-bootstrap/Row";
 import useGameSelect from "../hooks/useGameSelect";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function GameSelect() {
   const [apiError, setApiError] = useState(false);
@@ -40,14 +41,12 @@ export default function GameSelect() {
         <TitleCard />
       </Container>
       <Container as="nav">
-        <SelectedCounter
-          selected={selected}
-        />
+        <SelectedCounter selected={selected} />
       </Container>
       <Container as="main">
         <Row>
-          {gameList
-            ? gameList.map(game => (
+          {gameList ? (
+            gameList.map(game => (
               <GameCard
                 key={game.id}
                 game={game}
@@ -56,7 +55,13 @@ export default function GameSelect() {
                 selectFunc={setSelected}
               />
             ))
-            : apiError ? "Erro ao buscar lista" : "Carregando..."}
+          ) : apiError ? (
+            "Erro ao buscar lista"
+          ) : (
+            <Container style={{ width: "100%", textAlign: "center" }}>
+              <Spinner animation="border" />
+            </Container>
+          )}
         </Row>
       </Container>
     </Container>
