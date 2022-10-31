@@ -6,12 +6,14 @@ import { getAllGames } from "../repository/gameApiRepository";
 import IGameData from "../interfaces/IGameData";
 import GameCard from "../components/page/GameSelect/GameCard";
 import Row from "react-bootstrap/Row";
+import useGameSelect from "../hooks/useGameSelect";
+import { Navigate } from "react-router-dom";
 
 export default function GameSelect() {
-  const [selected, setSelected] = useState(0);
   const [apiError, setApiError] = useState(false);
 
   const [gameList, setGameList] = useState<IGameData[] | null>(null);
+  const [selected, setSelected] = useGameSelect([]);
 
   useEffect(() => {
     async function getGameData() {
@@ -39,12 +41,21 @@ export default function GameSelect() {
         <TitleCard />
       </Container>
       <Container as="nav">
-        <SelectedCounter selected={selected} />
+        <SelectedCounter
+          selected={selected}
+        />
       </Container>
       <Container>
         <Row>
           {gameList
-            ? gameList.map(game => <GameCard game={game} />)
+            ? gameList.map(game => (
+              <GameCard
+                key={game.id}
+                game={game}
+                isSelected={!!selected.find(el => game.id === el)}
+                selectFunc={setSelected}
+              />
+            ))
             : apiError ? "Error fetching game list" : "Loading..."}
         </Row>
       </Container>
