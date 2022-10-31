@@ -4,21 +4,28 @@ import Button from "react-bootstrap/Button";
 import isPlural from "../../../util/isPlural";
 
 interface IProps {
-  selected: number;
+  selected: string[];
 }
 
 export default function SelectedCounter({ selected }: IProps) {
+  const selectedCount = selected.length;
   return (
     <Row>
       <Col>
         <h4>
-          {isPlural(selected) ? "Selecionados" : "Selecionado"} {selected}{" "}
-          {isPlural(selected) ? "games" : "game"}
+          {isPlural(selectedCount) ? "Selecionados" : "Selecionado"}{" "}
+          {selectedCount} {isPlural(selectedCount) ? "games" : "game"}
         </h4>
       </Col>
       <Col xs={8} />
       <Col style={{ textAlign: "right" }}>
-        <Button>Gerar Meu Campeonato</Button>
+        <Button
+          as="a"
+          disabled={selectedCount < 8}
+          variant={selectedCount < 8 ? "secondary" : "primary"}
+        >
+          Gerar Meu Campeonato
+        </Button>
       </Col>
     </Row>
   );
