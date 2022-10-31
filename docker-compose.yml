@@ -6,3 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+  copagames.front:
+    image: ${DOCKER_REGISTRY-}copagamesfront
+    build:
+      context: ./copa-front
+      dockerfile: Dockerfile
