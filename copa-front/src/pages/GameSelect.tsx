@@ -56,7 +56,7 @@ export default function GameSelect() {
                 selectFunc={setSelected}
               />
             ))
-            : apiError ? "Error fetching game list" : "Loading..."}
+            : apiError ? "Erro ao buscar lista" : "Carregando..."}
         </Row>
       </Container>
     </Container>
